@@ -123,7 +123,7 @@ st.markdown("""
 @st.cache_data
 def load_results():
     try:
-        # CORRECTION : on cherche le fichier à la racine
+        # CORRECTION : Cherche 'all_results.pkl' à la racine
         with open('all_results.pkl', 'rb') as f:
             return pickle.load(f)
     except FileNotFoundError:
@@ -132,8 +132,8 @@ def load_results():
 
 @st.cache_resource
 def load_model(dataset, kernel):
-    # CORRECTION : on enlève le chemin du dossier
-    path = f'{dataset}_{kernel}_model.pkl' # Le chemin est maintenant juste le nom du fichier
+    # CORRECTION : Le chemin est juste le nom du fichier à la racine
+    path = f'{dataset}_{kernel}_model.pkl'
     if os.path.exists(path):
         with open(path, 'rb') as f:
             return pickle.load(f)
@@ -512,4 +512,5 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 

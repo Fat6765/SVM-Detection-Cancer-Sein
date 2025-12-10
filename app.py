@@ -123,15 +123,17 @@ st.markdown("""
 @st.cache_data
 def load_results():
     try:
-        with open('models/saved_models/all_results.pkl', 'rb') as f:
+        # CORRECTION : on cherche le fichier à la racine
+        with open('all_results.pkl', 'rb') as f:
             return pickle.load(f)
     except FileNotFoundError:
-        st.error("Fichier all_results.pkl introuvable. Exécutez train_svm.py d'abord.")
+        st.error("Fichier all_results.pkl introuvable. Assurez-vous qu'il est à la racine du dépôt.")
         st.stop()
 
 @st.cache_resource
 def load_model(dataset, kernel):
-    path = f'models/saved_models/{dataset}_{kernel}_model.pkl'
+    # CORRECTION : on enlève le chemin du dossier
+    path = f'{dataset}_{kernel}_model.pkl' # Le chemin est maintenant juste le nom du fichier
     if os.path.exists(path):
         with open(path, 'rb') as f:
             return pickle.load(f)
@@ -510,3 +512,4 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+

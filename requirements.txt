@@ -1,5 +1,6 @@
-streamlit
-pandas
-plotly
-scikit-learn>=1.2.2  # Force l'installation d'une version stable
-numpy
+# Liste standardisée pour Streamlit
+streamlit>=1.30.0
+pandas>=2.0.0
+plotly>=5.0.0
+numpy>=1.23.0
+scikit-learn>=1.2.2

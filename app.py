@@ -8,17 +8,13 @@ import warnings
 import os
 
 warnings.filterwarnings('ignore')
-# === AUTO-ENTRAÎNEMENT SI LES MODÈLES MANQUENT (pour Streamlit Cloud) ===
+# === VÉRIFICATION DU CHEMIN DES MODÈLES ===
+# Puisque tous les modèles sont uploadés, on ne fait que vérifier leur présence.
 if not os.path.exists('models/saved_models/all_results.pkl'):
-    st.warning("Modèles non trouvés → Entraînement automatique en cours (première fois seulement)...")
-    import subprocess
-    result = subprocess.run(["python", "train_svm.py"], capture_output=True, text=True)
-    if result.returncode == 0:
-        st.success("Entraînement terminé ! L'app est prête.")
-    else:
-        st.error("Échec de l'entraînement automatique.")
-        st.code(result.stdout + result.stderr)
-        st.stop()
+    st.error("ERREUR CRITIQUE : Le fichier de résultats 'all_results.pkl' est introuvable.")
+    st.info("Vérifiez que le dossier 'models/saved_models/' a été correctement uploadé sur GitHub.")
+    st.stop()
+# =============================================
 
 # =============================================
 # CONFIGURATION
@@ -512,4 +508,5 @@ st.markdown("""
         Détection du cancer du sein — SVM à Noyaux 
     </h4>
 </div>
+
 """, unsafe_allow_html=True)

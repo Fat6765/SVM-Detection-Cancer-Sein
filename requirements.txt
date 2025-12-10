@@ -1,5 +1,5 @@
 streamlit
-scikit-learn
 pandas
-numpy
 plotly
+scikit-learn>=1.2.2  # Force l'installation d'une version stable
+numpy
